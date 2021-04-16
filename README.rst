@@ -12,4 +12,4 @@ Check out this code in the ``./bogoduino`` directory::
 
 Add ``-I./bogoduino`` subdirectory to the ``CPPFLAGS``::
 
-    CPPFLAGS = -DTEST_BUILD -g -I./bogo
+    CPPFLAGS = -DTEST_BUILD -g -I./bogoduino
