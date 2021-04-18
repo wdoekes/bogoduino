@@ -6,7 +6,8 @@
 class BogoSerial {
 public:
     BogoSerial() {}
-    void begin(int baud) {}
+    void begin(long baud) {}
+    void begin(long baud, int mode) {}
 
 #define PRINT_FUNCTION(type, fmt) \
     size_t print(type p) { printf(fmt, p); return 0; } \
