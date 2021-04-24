@@ -1,16 +1,14 @@
-#ifndef INCLUDED_BOGODUINO_SERIAL_H
-#define INCLUDED_BOGODUINO_SERIAL_H
-
-#include "Print.h"
+#ifndef INCLUDED_BOGODUINO_PRINT_H
+#define INCLUDED_BOGODUINO_PRINT_H
 
 // This is a wrapper class that allows flash strings to be used as a
 // class, this means that type checking and function overloading can be
 // used with flash strings.
 class __FlashStringHelper;
 
-class BogoSerial : public Print {
+class Print {
 public:
-    BogoSerial() {}
+    Print() {}
     void begin(long baud) {}
     void begin(long baud, int mode) {}
 
@@ -44,6 +42,4 @@ public:
     bool operator!() { return false; }
 };
 
-static BogoSerial Serial;
-
-#endif //INCLUDED_BOGODUINO_SERIAL_H
+#endif //INCLUDED_BOGODUINO_PRINT_H
