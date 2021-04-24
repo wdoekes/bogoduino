@@ -1,5 +1,5 @@
-#ifndef INCLUDED_BOGO_ARDUINO_H
-#define INCLUDED_BOGO_ARDUINO_H
+#ifndef INCLUDED_BOGODUINO_ARDUINO_H
+#define INCLUDED_BOGODUINO_ARDUINO_H
 
 #include <cstdarg>
 #include <cstddef>
@@ -10,7 +10,9 @@
 #include "Serial.h"
 #include "WString.h"
 
-#define F(x) x
+/* See avr/pgmspace.h for more info/usage. */
+class __FlashStringHelper;
+#define F(x) reinterpret_cast<const __FlashStringHelper*>(x)
 
 const u_int8_t A0 = 0;
 const u_int8_t INPUT = 0;
@@ -24,4 +26,4 @@ unsigned long millis();
 void pinMode(u_int8_t pin, u_int8_t mode);
 int analogRead(u_int8_t pin);
 
-#endif //INCLUDED_BOGO_ARDUINO_H
+#endif //INCLUDED_BOGODUINO_ARDUINO_H

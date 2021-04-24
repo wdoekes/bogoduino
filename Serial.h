@@ -1,7 +1,10 @@
-#ifndef INCLUDED_BOGO_SERIAL_H
-#define INCLUDED_BOGO_SERIAL_H
+#ifndef INCLUDED_BOGODUINO_SERIAL_H
+#define INCLUDED_BOGODUINO_SERIAL_H
 
-#include "Arduino.h"
+// This is a wrapper class that allows flash strings to be used as a
+// class, this means that type checking and function overloading can be
+// used with flash strings.
+class __FlashStringHelper;
 
 class BogoSerial {
 public:
@@ -14,7 +17,17 @@ public:
     size_t println(type p) { printf(fmt "\n", p); return 0; } \
     size_t print(type p, int) { printf(fmt, p); return 0; } \
     size_t println(type p, int) { printf(fmt "\n", p); return 0; }
+#define PRINT_FUNCTION_CAST(type, fmt, cast) \
+    size_t print(type p) { \
+	printf(fmt, reinterpret_cast<cast>(p)); return 0; } \
+    size_t println(type p) { \
+	printf(fmt "\n", reinterpret_cast<cast>(p)); return 0; } \
+    size_t print(type p, int) { \
+	printf(fmt, reinterpret_cast<cast>(p)); return 0; } \
+    size_t println(type p, int) { \
+	printf(fmt "\n", reinterpret_cast<cast>(p)); return 0; }
 
+    PRINT_FUNCTION_CAST(const __FlashStringHelper *, "%s", const char *);
     PRINT_FUNCTION(const char *, "%s");
     PRINT_FUNCTION(double, "%g");
     PRINT_FUNCTION(float, "%f");
@@ -31,4 +44,4 @@ public:
 
 static BogoSerial Serial;
 
-#endif //INCLUDED_BOGO_SERIAL_H
+#endif //INCLUDED_BOGODUINO_SERIAL_H

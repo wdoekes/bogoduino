@@ -1,5 +1,5 @@
-#ifndef INCLUDED_BOGO_XTOA_H
-#define INCLUDED_BOGO_XTOA_H
+#ifndef INCLUDED_BOGODUINO_XTOA_H
+#define INCLUDED_BOGODUINO_XTOA_H
 
 #include <cstdio>
 
@@ -60,4 +60,4 @@ inline void ultoa(unsigned long value, char* buf, int base)
     }
 }
 
-#endif //INCLUDED_BOGO_XTOA_H
+#endif //INCLUDED_BOGODUINO_XTOA_H
