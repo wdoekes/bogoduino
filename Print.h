@@ -29,6 +29,7 @@ public:
 
     PRINT_FUNCTION_CAST(const __FlashStringHelper *, "%s", const char *);
     PRINT_FUNCTION(const char *, "%s");
+    PRINT_FUNCTION(char, "%c");
     PRINT_FUNCTION(double, "%g");
     PRINT_FUNCTION(float, "%f");
     PRINT_FUNCTION(int, "%d");
