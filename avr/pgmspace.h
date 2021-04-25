@@ -5,9 +5,8 @@
  * Usage:
  *
  *   const char my_string[] PROGMEM = "my string";
- *   long value PROGMEM = 0x1234;
  *
- * my_string and value will now be stored in program memory (PGM/Flash)
+ * my_string will now be stored in program memory (PGM/Flash)
  * rather than in SRAM.
  *
  * However, char*s cannot be used as regular char* pointers:
@@ -18,10 +17,11 @@
  * It's wise to cast these global PROGMEM strings to __FlashStringHelper
  * so the compiler can detect that you're using these type-safely [sic]:
  *
- *   #define AS_MEM_CSTR(x) reinterpret_cast<const char*>(x)
- *   #define AS_PGM_CSTR(x) reinterpret_cast<const __FlashStringHelper*>(x)
+ *   typedef __FlashStringHelper pgm_char;
+ *   #define from_pgm_char_p(x) reinterpret_cast<const char*>(x)
+ *   #define to_pgm_char_p(x) reinterpret_cast<const pgm_char*>(x)
  *
- *   const __FlashStringHelper *my_pgm_string = to_PGM_P(my_string);
+ *   const pgm_char *my_pgm_string = to_pgm_char_p(my_string);
  *
  * And now you can/must use the <function>_P variants, like:
  *
@@ -29,6 +29,19 @@
  *   error: cannot convert ‘const __FlashStringHelper*’ to ‘const char*’
  *
  *   --> strcmp_P("abc", my_pgm_string)   // good
+ *
+ * But... see also progmem.h (not in bogoduino), which defines this:
+ *
+ *   #define DECLARE_PGM_CHAR_P(identifier, value) \
+ *     const char (char_ ## identifier)[] PROGMEM = value; \
+ *     const pgm_char *const identifier = to_pgm_char_p(char_ ## identifier)
+ *
+ * Instead of the my_string[] initializer above, you can now do:
+ *
+ *   DECLARE_PGM_CHAR_P(my_string, "my string");
+ *
+ * It's not the prettiest, but it will create an opaque char_my_string
+ * for you (in flash memory) and assign it to my_string.
  */
 #include <cstring>
 
