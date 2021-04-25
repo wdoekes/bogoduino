@@ -38,6 +38,13 @@ String::String(const String &value)
 	*this = value;
 }
 
+String::String(const __FlashStringHelper *str)
+{
+	init();
+	const char *cstr = reinterpret_cast<const char*>(str);
+	if (cstr) copy(cstr, strlen(cstr));
+}
+
 #if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
 String::String(String &&rval)
 {

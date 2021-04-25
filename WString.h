@@ -80,7 +80,9 @@ public:
 	// marked as invalid ("if (s)" will be false).
 	String & operator = (const String &rhs);
 	String & operator = (const char *cstr);
-	String & operator = (const __FlashStringHelper *str);
+	String & operator = (const __FlashStringHelper *str) {
+	    return operator=(reinterpret_cast<const char*>(str));
+	}
        #if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
 	String & operator = (String &&rval);
 	String & operator = (StringSumHelper &&rval);
