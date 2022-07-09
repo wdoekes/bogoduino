@@ -1,6 +1,9 @@
 #ifndef INCLUDED_BOGODUINO_PRINT_H
 #define INCLUDED_BOGODUINO_PRINT_H
 
+#include <cstdint>
+#include <cstdio>
+
 // This is a wrapper class that allows flash strings to be used as a
 // class, this means that type checking and function overloading can be
 // used with flash strings.
@@ -39,6 +42,13 @@ public:
 #undef PRINT_FUNCTION
 
     size_t println() { printf("\n"); return 0; }
+
+    size_t write(const uint8_t *buffer, size_t size) {
+	return fwrite(buffer, 1, size, stdout);
+    }
+    size_t write(const char *buffer, size_t size) {
+	return fwrite(buffer, 1, size, stdout);
+    }
 
     bool operator!() { return false; }
 };
