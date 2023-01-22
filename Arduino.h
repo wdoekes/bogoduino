@@ -11,6 +11,9 @@
 #include "Serial.h"
 #include "WString.h"
 
+/* ??? must be >= 100 somewhere.. */
+#define ARDUINO 267
+
 /* See avr/pgmspace.h for more info/usage. */
 class __FlashStringHelper;
 #define F(x) reinterpret_cast<const __FlashStringHelper*>(x)
