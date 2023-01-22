@@ -12,6 +12,17 @@
 // used with flash strings.
 class __FlashStringHelper;
 
+enum print_radix {
+    BIN = 2,
+    OCT = 8,
+    DEC = 10,
+    HEX = 16
+};
+
+static const char* radix_fmt[17] {
+    "", "", "FIXME", "", "", "", "", "",
+    "%o", "", "%d", "", "", "", "", "", "%X"};
+
 class Print {
 public:
     Print() {}
@@ -20,8 +31,14 @@ public:
 #define PRINT_FUNCTION(type, fmt) \
     size_t print(type p) { printf(fmt, p); return 0; } \
     size_t println(type p) { printf(fmt "\n", p); return 0; } \
-    size_t print(type p, int) { printf(fmt, p); return 0; } \
-    size_t println(type p, int) { printf(fmt "\n", p); return 0; }
+    size_t print(type p, enum print_radix pr) { \
+	if (pr != DEC) { printf(radix_fmt[pr], p); } \
+	else { printf(fmt, p); } \
+	return 0; } \
+    size_t println(type p, enum print_radix pr) { \
+	if (pr != DEC) { printf(radix_fmt[pr], p); printf("\n"); } \
+	else { printf(fmt, p); } \
+	return 0; }
 #define PRINT_FUNCTION_CAST(type, fmt, cast) \
     size_t print(type p) { \
 	printf(fmt, reinterpret_cast<cast>(p)); return 0; } \

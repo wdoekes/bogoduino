@@ -11,6 +11,14 @@ int main()
     s.remove(s.indexOf('s'));
     s += "ST";
     printf("[%s]\n", s.c_str());
+
+    Serial.println("Hello World!");
+    Serial.print("(oct) 0o13 == 0o");
+    Serial.println(013, OCT);
+    Serial.print("(dec) 11 == ");
+    Serial.println(11);
+    Serial.print("(hex) 0xB == 0x");
+    Serial.println(0xB, HEX);
     return 0;
 }
 
