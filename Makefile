@@ -3,7 +3,7 @@ OBJECTS = Arduino.o WString.o bogoduino.o
 
 # --- Test mode ---
 CXX = g++
-CPPFLAGS = -DTEST_BUILD -g
+CPPFLAGS = -DTEST_BUILD -DTEST_BOGODUINO_ITSELF -g
 CXXFLAGS = -Wall -Os -fdata-sections -ffunction-sections
 LDFLAGS = -Wl,--gc-sections # -s(trip)
 

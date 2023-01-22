@@ -1,4 +1,4 @@
-#ifdef TEST_BUILD
+#if defined(TEST_BUILD) && defined(TEST_BOGODUINO_ITSELF)
 
 #include "Arduino.h"
 #include "Serial.h"
@@ -23,4 +23,4 @@ int main()
 }
 
 /* vim: set ts=8 sw=4 sts=4 et ai: */
-#endif //TEST_BUILD
+#endif //TEST_BUILD && TEST_BOGODUINO_ITSELF
