@@ -1,8 +1,11 @@
 #ifndef INCLUDED_BOGODUINO_PRINT_H
 #define INCLUDED_BOGODUINO_PRINT_H
 
+#include <cmath> // not used here, but by others
 #include <cstdint>
 #include <cstdio>
+
+#include "WString.h"
 
 // This is a wrapper class that allows flash strings to be used as a
 // class, this means that type checking and function overloading can be
@@ -40,6 +43,9 @@ public:
     PRINT_FUNCTION(long, "%ld");
     PRINT_FUNCTION(unsigned long, "%ld");
 #undef PRINT_FUNCTION
+
+    size_t print(const String& s) { return print(s.c_str()); }
+    size_t println(const String& s) { return println(s.c_str()); }
 
     size_t println() { printf("\n"); return 0; }
 

@@ -14,6 +14,13 @@
 /* ??? must be >= 100 somewhere.. */
 #define ARDUINO 267
 
+/* Misc datatypes */
+typedef uint16_t word;
+//#define bit(b) (1UL << (b))
+//#define _BV(b) (1UL << (b))
+typedef bool boolean;
+typedef uint8_t byte;
+
 /* See avr/pgmspace.h for more info/usage. */
 class __FlashStringHelper;
 #define F(x) reinterpret_cast<const __FlashStringHelper*>(x)
