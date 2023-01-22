@@ -15,8 +15,7 @@ class __FlashStringHelper;
 class Print {
 public:
     Print() {}
-    void begin(long baud) {}
-    void begin(long baud, int mode) {}
+    virtual ~Print() {}
 
 #define PRINT_FUNCTION(type, fmt) \
     size_t print(type p) { printf(fmt, p); return 0; } \
@@ -55,8 +54,6 @@ public:
     size_t write(const char *buffer, size_t size) {
 	return fwrite(buffer, 1, size, stdout);
     }
-
-    bool operator!() { return false; }
 };
 
 #endif //INCLUDED_BOGODUINO_PRINT_H
