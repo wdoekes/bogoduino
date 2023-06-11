@@ -38,7 +38,7 @@ template<class T> inline T min(T a, T b) { return (a < b) ? a : b; }
 template<class T> inline T max(T a, T b) { return (a > b) ? a : b; }
 
 void delay(unsigned long ms);
-unsigned long millis();
+unsigned long millis(unsigned long set_millis=0);
 void pinMode(uint8_t pin, uint8_t mode);
 int analogRead(uint8_t pin);
 void digitalWrite(uint8_t pin, uint8_t val);
