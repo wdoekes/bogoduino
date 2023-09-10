@@ -1,6 +1,8 @@
 #ifndef INCLUDED_BOGODUINO_WIRE_H
 #define INCLUDED_BOGODUINO_WIRE_H
 
+#include "Arduino.h"
+
 struct TwoWire {
     void begin() {}
     void beginTransmission(uint8_t) {}
